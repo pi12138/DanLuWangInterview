@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=100, verbose_name='任务标题')),
                 ('create_time', models.DateTimeField(auto_now_add=True, verbose_name='创建任务时间')),
                 ('status', models.IntegerField(choices=[(0, 'active'), (1, 'completed')], default=0, verbose_name='任务状态')),
-                ('completed_time', models.DateTimeField(blank=True, default='', null=True, verbose_name='任务完成时间')),
+                ('completed_time', models.DateTimeField(blank=True, default=None, null=True, verbose_name='任务完成时间')),
                 ('is_deleted', models.BooleanField(default=False, verbose_name='是否已删除')),
             ],
         ),
