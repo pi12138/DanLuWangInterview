@@ -13,7 +13,7 @@ class Task(models.Model):
     )
 
     title = models.CharField(max_length=100, verbose_name="任务标题")
-    create_time = models.DateTimeField(auto_now=True, auto_now_add=True, verbose_name="创建任务时间")
+    create_time = models.DateTimeField(auto_now_add=True, verbose_name="创建任务时间")
     status = models.IntegerField(choices=TASK_STATUS_VALUE, default=0, verbose_name="任务状态")
     completed_time = models.DateTimeField(default="", blank=True, null=True, verbose_name="任务完成时间")
     is_deleted = models.BooleanField(default=False, verbose_name="是否已删除")
