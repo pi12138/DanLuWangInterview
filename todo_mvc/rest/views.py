@@ -22,7 +22,13 @@ class TaskViewSet(viewsets.ViewSet):
         data = request.data
         data['create_time'] = datetime.datetime.now()
 
-        ser = TaskSerializer(data=data)
+        tasks = Task.objects.filter(title=data['title'], is_deleted=True)
+        if tasks.exists():
+            data['is_deleted'] = False
+            ser = TaskSerializer(instance=tasks[0], data=data)
+        else:
+            ser = TaskSerializer(data=data)
+
         if not ser.is_valid():
             return Response({'error': ser.errors, 'msg': '数据不合法'}, status=400)
 
