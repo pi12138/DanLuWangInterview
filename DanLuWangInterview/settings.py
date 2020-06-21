@@ -25,7 +25,7 @@ SECRET_KEY = '(%fs2&iz3v1*l@bc=$$dlsh7=ecswbhixvvr&g8ev@m+mynsp^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["localhost"]
 
 
 # Application definition
@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'todo_mvc',
-    'corsheaders'
+    'corsheaders',
+    'blog'
 ]
 
 MIDDLEWARE = [
