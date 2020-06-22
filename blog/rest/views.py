@@ -15,7 +15,7 @@ class ArticleViewSet(viewsets.ViewSet):
     """
 
     def list(self, request):
-        articles = Article.objects.all()
+        articles = Article.objects.all().order_by('-create_time')
         ser = ArticleListSerializer(instance=articles, many=True)
 
         return Response(ser.data)

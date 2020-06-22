@@ -7,7 +7,10 @@ class ArticleListSerializer(serializers.ModelSerializer):
     """文章列表序列化器"""
     class Meta:
         model = Article
-        fields = ('id', 'title')
+        fields = ('id', 'title', 'create_time')
+        extra_kwargs = {
+            'create_time': {'format': '%Y-%m-%d %H:%M:%S'}
+        }
 
 
 class ArticleSerializer(serializers.ModelSerializer):
