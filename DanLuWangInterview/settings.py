@@ -109,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -131,7 +131,7 @@ from .localsettings import DATABASES
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
-#默认可以使用的非标准请求头，需要使用自定义请求头时，就可以进行修改
+# 默认可以使用的非标准请求头，需要使用自定义请求头时，就可以进行修改
 CORS_ALLOW_HEADERS = (
     'accept',
     'accept-encoding',
@@ -144,7 +144,7 @@ CORS_ALLOW_HEADERS = (
     'x-requested-with',
 )
 
-#默认请求方法
+# 默认请求方法
 CORS_ALLOW_METHODS = (
     'DELETE',
     'GET',
