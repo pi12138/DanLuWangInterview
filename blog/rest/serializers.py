@@ -21,3 +21,8 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = "__all__"
+        extra_kwargs = {
+            'user_ip': {'write_only': True},
+            'article': {'write_only': True},
+            'create_time': {'format': '%Y-%m-%d %H:%M:%S'}
+        }

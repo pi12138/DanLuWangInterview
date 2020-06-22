@@ -1,5 +1,6 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
+from rest_framework.request import Request
 
 from blog.models import Article, Comment
 from blog.rest.serializers import ArticleListSerializer, ArticleSerializer, CommentSerializer
@@ -38,14 +39,14 @@ class CommentViewSet(viewsets.ViewSet):
     def list(self, request):
         article_id = request.query_params.get('articleId')
 
-        comments = Comment.objects.filter(article_id=article_id)
+        comments = Comment.objects.filter(article_id=article_id).order_by('-create_time')
         ser = CommentSerializer(instance=comments, many=True)
 
         return Response(ser.data)
 
     def create(self, request):
         data = request.data
-        ip = request.remote_addr
+        ip = request._request.META.get('REMOTE_ADDR')
         code, ip_address = getAddrFromIP(ip)
 
         data['user_ip'] = ip
