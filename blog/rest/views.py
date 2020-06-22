@@ -1,8 +1,11 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 
-from blog.models import Article
-from blog.rest.serializers import ArticleListSerializer, ArticleSerializer
+from blog.models import Article, Comment
+from blog.rest.serializers import ArticleListSerializer, ArticleSerializer, CommentSerializer
+from blog.helpers import getAddrFromIP
+
+import datetime
 
 
 class ArticleViewSet(viewsets.ViewSet):
@@ -25,4 +28,33 @@ class ArticleViewSet(viewsets.ViewSet):
             return Response({'msg': '文章不存在'}, status=400)
 
         ser = ArticleSerializer(instance=articles[0])
+        return Response(ser.data)
+
+
+class CommentViewSet(viewsets.ViewSet):
+    """
+    评论视图
+    """
+    def list(self, request):
+        article_id = request.query_params.get('articleId')
+
+        comments = Comment.objects.filter(article_id=article_id)
+        ser = CommentSerializer(instance=comments, many=True)
+
+        return Response(ser.data)
+
+    def create(self, request):
+        data = request.data
+        ip = request.remote_addr
+        code, ip_address = getAddrFromIP(ip)
+
+        data['user_ip'] = ip
+        data['user_address'] = ip_address if code == 0 else ""
+        data['create_time'] = datetime.datetime.now()
+
+        ser = CommentSerializer(data=data)
+        if not ser.is_valid():
+            return Response({'error': ser.errors, 'msg': '数据不合法'}, status=400)
+
+        ser.save()
         return Response(ser.data)
