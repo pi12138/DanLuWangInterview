@@ -82,7 +82,7 @@ CREATE TABLE `auth_permission` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `auth_permission_content_type_id_codename_01ab375a_uniq` (`content_type_id`,`codename`),
   CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,7 +91,7 @@ CREATE TABLE `auth_permission` (
 
 LOCK TABLES `auth_permission` WRITE;
 /*!40000 ALTER TABLE `auth_permission` DISABLE KEYS */;
-INSERT INTO `auth_permission` VALUES (1,'Can add log entry',1,'add_logentry'),(2,'Can change log entry',1,'change_logentry'),(3,'Can delete log entry',1,'delete_logentry'),(4,'Can view log entry',1,'view_logentry'),(5,'Can add permission',2,'add_permission'),(6,'Can change permission',2,'change_permission'),(7,'Can delete permission',2,'delete_permission'),(8,'Can view permission',2,'view_permission'),(9,'Can add group',3,'add_group'),(10,'Can change group',3,'change_group'),(11,'Can delete group',3,'delete_group'),(12,'Can view group',3,'view_group'),(13,'Can add user',4,'add_user'),(14,'Can change user',4,'change_user'),(15,'Can delete user',4,'delete_user'),(16,'Can view user',4,'view_user'),(17,'Can add content type',5,'add_contenttype'),(18,'Can change content type',5,'change_contenttype'),(19,'Can delete content type',5,'delete_contenttype'),(20,'Can view content type',5,'view_contenttype'),(21,'Can add session',6,'add_session'),(22,'Can change session',6,'change_session'),(23,'Can delete session',6,'delete_session'),(24,'Can view session',6,'view_session'),(25,'Can add task',7,'add_task'),(26,'Can change task',7,'change_task'),(27,'Can delete task',7,'delete_task'),(28,'Can view task',7,'view_task');
+INSERT INTO `auth_permission` VALUES (1,'Can add log entry',1,'add_logentry'),(2,'Can change log entry',1,'change_logentry'),(3,'Can delete log entry',1,'delete_logentry'),(4,'Can view log entry',1,'view_logentry'),(5,'Can add permission',2,'add_permission'),(6,'Can change permission',2,'change_permission'),(7,'Can delete permission',2,'delete_permission'),(8,'Can view permission',2,'view_permission'),(9,'Can add group',3,'add_group'),(10,'Can change group',3,'change_group'),(11,'Can delete group',3,'delete_group'),(12,'Can view group',3,'view_group'),(13,'Can add user',4,'add_user'),(14,'Can change user',4,'change_user'),(15,'Can delete user',4,'delete_user'),(16,'Can view user',4,'view_user'),(17,'Can add content type',5,'add_contenttype'),(18,'Can change content type',5,'change_contenttype'),(19,'Can delete content type',5,'delete_contenttype'),(20,'Can view content type',5,'view_contenttype'),(21,'Can add session',6,'add_session'),(22,'Can change session',6,'change_session'),(23,'Can delete session',6,'delete_session'),(24,'Can view session',6,'view_session'),(25,'Can add task',7,'add_task'),(26,'Can change task',7,'change_task'),(27,'Can delete task',7,'delete_task'),(28,'Can view task',7,'view_task'),(29,'Can add 博客',8,'add_article'),(30,'Can change 博客',8,'change_article'),(31,'Can delete 博客',8,'delete_article'),(32,'Can view 博客',8,'view_article'),(33,'Can add 评论',9,'add_comment'),(34,'Can change 评论',9,'change_comment'),(35,'Can delete 评论',9,'delete_comment'),(36,'Can view 评论',9,'view_comment');
 /*!40000 ALTER TABLE `auth_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,7 +116,7 @@ CREATE TABLE `auth_user` (
   `date_joined` datetime(6) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,6 +125,7 @@ CREATE TABLE `auth_user` (
 
 LOCK TABLES `auth_user` WRITE;
 /*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
+INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$150000$82ebqLWuq0CS$cPFIAC56JW55QcTn3bWsDzq7WLkbzcn6m5TICX5YRdY=','2020-06-21 12:59:31.679089',1,'1558255789','','','1558255789@qq.com',1,1,'2020-06-21 12:57:22.118389');
 /*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -185,6 +186,63 @@ LOCK TABLES `auth_user_user_permissions` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `blog_article`
+--
+
+DROP TABLE IF EXISTS `blog_article`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `blog_article` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL,
+  `content` longtext NOT NULL,
+  `create_time` datetime(6) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `blog_article`
+--
+
+LOCK TABLES `blog_article` WRITE;
+/*!40000 ALTER TABLE `blog_article` DISABLE KEYS */;
+INSERT INTO `blog_article` VALUES (1,'第一篇博客','# 第一篇博客\r\n\r\n- 我的第一篇博客','2020-06-21 13:03:12.000000'),(2,'第二篇博客','# 第二篇博客\r\n\r\n- 我的第二篇博客','2020-06-21 13:03:36.000000'),(3,'第三篇博客','# 第三篇博客\r\n\r\n- 我的第三篇博客','2020-06-21 13:04:07.000000'),(4,'担路网面试项目开发流程','# 担路网项目开发流程\r\n\r\n## todomvc部分\r\n\r\n- 后端：\r\n    - 创建数据库`create database DanluwangInterview default character set=\'utf8\';`\r\n    - 新建项目`django-admin startproject DanLuWangInterview`\r\n    - 新建app`django-admin startapp todo_mvc`       \r\n    - 修改项目settings文件\r\n    - 运行项目出现问题：`LookupError: No installed app with label \'admin\'.`\r\n        - 原因：使用pymysql作为django连接mysql的工具\r\n        - 解决：换用mysqlclient\r\n    - 编写task模型    \r\n    - 编写task接口\r\n    - 解决cors问题\r\n    - 上传项目到阿里云服务器 `scp -r 本地项目文件夹 用户@IP地址:远程目录`\r\n    - 阿里云服务器创建数据库并导入数据\r\n        - 导出: `mysqldump -u root -p 数据库名>要导出到的文件名`\r\n        - 导入：`source 文件名`\r\n\r\n- 前端\r\n    - 安装vue-cli `npm install -g @vue/cli`\r\n    - 创建项目：`vue create danluwang-interview-front`\r\n    - 安装vue-router: `vue add router`\r\n    - 安装bootstrap-vue： `vue add bootstrap-vue`\r\n    - 上传项目到阿里云服务器，配置nginx\r\n\r\n## blog部分\r\n\r\n- 后端：\r\n    - 新建app`django-admin startapp blog`\r\n    - 设计article模型\r\n    - 设计comment模型\r\n    - 编写article和comment接口\r\n\r\n- 前端：\r\n    - 编写blog, article, comment组件\r\n    - 编写调用数据请求\r\n    - 使用marked渲染markdown内容','2020-06-22 07:34:14.000000');
+/*!40000 ALTER TABLE `blog_article` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `blog_comment`
+--
+
+DROP TABLE IF EXISTS `blog_comment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `blog_comment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_ip` varchar(100) NOT NULL,
+  `user_address` varchar(100) NOT NULL,
+  `content` longtext NOT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `create_time` datetime(6) NOT NULL,
+  `article_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `blog_comment_article_id_3d58bca6_fk_blog_article_id` (`article_id`),
+  CONSTRAINT `blog_comment_article_id_3d58bca6_fk_blog_article_id` FOREIGN KEY (`article_id`) REFERENCES `blog_article` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `blog_comment`
+--
+
+LOCK TABLES `blog_comment` WRITE;
+/*!40000 ALTER TABLE `blog_comment` DISABLE KEYS */;
+INSERT INTO `blog_comment` VALUES (1,'127.0.0.1','XX-XX-内网IP-','还行','1558255789@qq.com','2020-06-22 06:26:45.251050',2),(2,'127.0.0.1','XX-XX-内网IP-','还可以','1558255789@qq.com','2020-06-22 06:40:17.577257',2),(3,'127.0.0.1','XX-XX-内网IP-','还阔以吧','1558255789@163.com','2020-06-22 06:47:31.378153',2),(4,'127.0.0.1','XX-XX-内网IP-','写的还行','1558255789@163.com','2020-06-22 06:49:57.622116',2),(5,'127.0.0.1','XX-XX-内网IP-','担路网项目开发流程','1558255789@gmail.com','2020-06-22 07:35:25.469807',4),(6,'127.0.0.1','XX-XX-内网IP-','担路网项目开发流程担路网项目开发流程担路网项目开发流程担路网项目开发流程担路网项目开发流程担路网项目开发流程担路网项目开发流程担路网项目开发流程','1558255789@gmail.com','2020-06-22 07:35:33.201245',4);
+/*!40000 ALTER TABLE `blog_comment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `django_admin_log`
 --
 
@@ -205,7 +263,7 @@ CREATE TABLE `django_admin_log` (
   KEY `django_admin_log_user_id_c564eba6_fk_auth_user_id` (`user_id`),
   CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
   CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -214,6 +272,7 @@ CREATE TABLE `django_admin_log` (
 
 LOCK TABLES `django_admin_log` WRITE;
 /*!40000 ALTER TABLE `django_admin_log` DISABLE KEYS */;
+INSERT INTO `django_admin_log` VALUES (1,'2020-06-21 13:03:13.713859','1','第一篇博客',1,'[{\"added\": {}}]',8,1),(2,'2020-06-21 13:03:37.388622','2','第二篇博客',1,'[{\"added\": {}}]',8,1),(3,'2020-06-21 13:04:08.703006','3','第三篇博客',1,'[{\"added\": {}}]',8,1),(4,'2020-06-22 07:34:15.653074','4','担路网面试项目开发流程',1,'[{\"added\": {}}]',8,1);
 /*!40000 ALTER TABLE `django_admin_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -230,7 +289,7 @@ CREATE TABLE `django_content_type` (
   `model` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `django_content_type_app_label_model_76bd3d3b_uniq` (`app_label`,`model`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -239,7 +298,7 @@ CREATE TABLE `django_content_type` (
 
 LOCK TABLES `django_content_type` WRITE;
 /*!40000 ALTER TABLE `django_content_type` DISABLE KEYS */;
-INSERT INTO `django_content_type` VALUES (1,'admin','logentry'),(3,'auth','group'),(2,'auth','permission'),(4,'auth','user'),(5,'contenttypes','contenttype'),(6,'sessions','session'),(7,'todo_mvc','task');
+INSERT INTO `django_content_type` VALUES (1,'admin','logentry'),(3,'auth','group'),(2,'auth','permission'),(4,'auth','user'),(8,'blog','article'),(9,'blog','comment'),(5,'contenttypes','contenttype'),(6,'sessions','session'),(7,'todo_mvc','task');
 /*!40000 ALTER TABLE `django_content_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -256,7 +315,7 @@ CREATE TABLE `django_migrations` (
   `name` varchar(255) NOT NULL,
   `applied` datetime(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -265,7 +324,7 @@ CREATE TABLE `django_migrations` (
 
 LOCK TABLES `django_migrations` WRITE;
 /*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
-INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2020-06-15 15:14:16.277173'),(2,'auth','0001_initial','2020-06-15 15:14:16.461789'),(3,'admin','0001_initial','2020-06-15 15:14:17.141902'),(4,'admin','0002_logentry_remove_auto_add','2020-06-15 15:14:17.306072'),(5,'admin','0003_logentry_add_action_flag_choices','2020-06-15 15:14:17.318691'),(6,'contenttypes','0002_remove_content_type_name','2020-06-15 15:14:17.462282'),(7,'auth','0002_alter_permission_name_max_length','2020-06-15 15:14:17.566271'),(8,'auth','0003_alter_user_email_max_length','2020-06-15 15:14:17.652115'),(9,'auth','0004_alter_user_username_opts','2020-06-15 15:14:17.665188'),(10,'auth','0005_alter_user_last_login_null','2020-06-15 15:14:17.731554'),(11,'auth','0006_require_contenttypes_0002','2020-06-15 15:14:17.736706'),(12,'auth','0007_alter_validators_add_error_messages','2020-06-15 15:14:17.748622'),(13,'auth','0008_alter_user_username_max_length','2020-06-15 15:14:17.853044'),(14,'auth','0009_alter_user_last_name_max_length','2020-06-15 15:14:17.937222'),(15,'auth','0010_alter_group_name_max_length','2020-06-15 15:14:18.024273'),(16,'auth','0011_update_proxy_permissions','2020-06-15 15:14:18.037190'),(17,'sessions','0001_initial','2020-06-15 15:14:18.064457'),(18,'todo_mvc','0001_initial','2020-06-15 15:16:55.883881'),(19,'todo_mvc','0002_auto_20200615_1525','2020-06-15 15:28:08.456986'),(20,'todo_mvc','0003_auto_20200615_1527','2020-06-15 15:28:08.497930'),(21,'todo_mvc','0004_remove_task_completed_time','2020-06-18 14:22:46.629793');
+INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2020-06-15 15:14:16.277173'),(2,'auth','0001_initial','2020-06-15 15:14:16.461789'),(3,'admin','0001_initial','2020-06-15 15:14:17.141902'),(4,'admin','0002_logentry_remove_auto_add','2020-06-15 15:14:17.306072'),(5,'admin','0003_logentry_add_action_flag_choices','2020-06-15 15:14:17.318691'),(6,'contenttypes','0002_remove_content_type_name','2020-06-15 15:14:17.462282'),(7,'auth','0002_alter_permission_name_max_length','2020-06-15 15:14:17.566271'),(8,'auth','0003_alter_user_email_max_length','2020-06-15 15:14:17.652115'),(9,'auth','0004_alter_user_username_opts','2020-06-15 15:14:17.665188'),(10,'auth','0005_alter_user_last_login_null','2020-06-15 15:14:17.731554'),(11,'auth','0006_require_contenttypes_0002','2020-06-15 15:14:17.736706'),(12,'auth','0007_alter_validators_add_error_messages','2020-06-15 15:14:17.748622'),(13,'auth','0008_alter_user_username_max_length','2020-06-15 15:14:17.853044'),(14,'auth','0009_alter_user_last_name_max_length','2020-06-15 15:14:17.937222'),(15,'auth','0010_alter_group_name_max_length','2020-06-15 15:14:18.024273'),(16,'auth','0011_update_proxy_permissions','2020-06-15 15:14:18.037190'),(17,'sessions','0001_initial','2020-06-15 15:14:18.064457'),(18,'todo_mvc','0001_initial','2020-06-15 15:16:55.883881'),(19,'todo_mvc','0002_auto_20200615_1525','2020-06-15 15:28:08.456986'),(20,'todo_mvc','0003_auto_20200615_1527','2020-06-15 15:28:08.497930'),(21,'todo_mvc','0004_remove_task_completed_time','2020-06-18 14:22:46.629793'),(22,'blog','0001_initial','2020-06-21 12:50:27.263041');
 /*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -291,6 +350,7 @@ CREATE TABLE `django_session` (
 
 LOCK TABLES `django_session` WRITE;
 /*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
+INSERT INTO `django_session` VALUES ('e500y0y0w24n6u9hg7n4wjnpadjbjha7','ZmRhNTdjZGVhYWI4NmU3MTY0MDliYTc3MDI1ODc4NjNhM2JlNzdmODp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJiNzA5ZDVjYTI2YjdjOWJiMzljNTFiNzhiYzA3MjgxNmYxMDI1MjViIn0=','2020-07-05 12:59:31.686268');
 /*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -331,4 +391,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-18 23:26:32
+-- Dump completed on 2020-06-22 15:42:19
